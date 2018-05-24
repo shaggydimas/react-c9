@@ -107,7 +107,7 @@ class App extends Component {
       return <Login auth={ this.authenticate } />
     }
     else if(!this.state.loaded) {
-      return <div className="loader">Loading...</div>
+      return <div className="loader">Test...</div>
     }
     else {
       return (
