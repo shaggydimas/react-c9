@@ -72,7 +72,7 @@ class App extends Component {
     return(
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" render={ (props) =>
+        <Route exact path={process.env.PUBLIC_URL+'/'} render={ (props) =>
           <Landing 
           {...props}
           loaded={this.state.loaded}
@@ -81,7 +81,7 @@ class App extends Component {
            /> }>
           }
         </Route>
-        <Route path="/chat-room/:room" render={ (props) => <Chat {...props} user={this.state.user} /> }></Route>
+        <Route path={process.env.PUBLIC_URL+'/chat-room/:room'} render={ (props) => <Chat {...props} user={this.state.user} /> }></Route>
       </Switch>
     </BrowserRouter>)
   }
