@@ -19,7 +19,7 @@ class MessageForm extends Component {
 	render() {
 		return(
 			<div className="msg-form">
-				<input type="text" onKeyUp={ this.handleSubmit.bind(this) } placeholder="Enter your message" ref={this.inputVal} />
+				<input type="text" onKeyUp={ this.handleSubmit.bind(this) } placeholder="Enter your message + Enter" ref={this.inputVal} />
 				<button onClick={ this.handleSubmit.bind(this) }>Enter</button>
 			</div>
 			)

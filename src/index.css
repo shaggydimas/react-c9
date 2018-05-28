@@ -25,9 +25,10 @@ main .loader, .login-wrap {
 }
 
 .messages  {
-	height: calc(100% - 60px);
+	height: calc(100% - 100px);
 	overflow-y: scroll;
 	padding-bottom: 60px;
+	padding-top: 40px;
 	-webkit-overflow-scrolling: touch;
 }
 
@@ -139,4 +140,113 @@ main .loader, .login-wrap {
 
 .login-box button.tw {
 	background: #1DA1F2;
+}
+
+.rooms-wrap {
+	max-width: 1000px;
+	margin: 20px auto 0 auto;
+	box-sizing: border-box;
+	padding: 0 15px;
+}
+
+.chat-rooms {
+	list-style: none;
+	padding: 0;	
+}
+
+.chat-rooms a {
+	display: block;
+	padding: 10px;
+	margin: 5px 0;
+	background: whiteSmoke;
+	border-radius: 4px;
+	color: #333;
+	text-decoration: none;
+}
+
+.chat-rooms a:hover {
+	background: silver;
+}
+
+.chat-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	background: whiteSmoke;
+	border-bottom: 1px solid #777;
+	text-align: center;
+}
+
+.chat-header > b {
+	padding: 10px;
+	display: inline-block;
+}
+
+.chat-header > a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	color: black;
+	text-decoration: none;
+}
+
+.chat-header > a:hover {
+	text-decoration: underline;
+}
+
+.dn {
+	display: none !important;
+}
+
+.red-btn {
+	background:  #E0479E;
+	border: none;
+	color: #fff;
+	padding: 7px 10px;
+	border-radius: 4px;
+}
+
+.red-btn:hover {
+	opacity: .9;
+}
+
+.create-room-form {
+	margin-top: 10px;
+}
+
+.create-room-form input {
+	border: none;
+	height: 22px;
+	border-radius: 4px;
+	outline: none;
+	padding-left: 7px;
+}
+
+.create-room-form > button {
+	border: none;
+	background: #43AA8B;
+	color: #fff;
+	margin-left: 5px;
+	padding: 3px 13px;
+	border-radius: 2px;
+}
+
+.create-room-form > button:hover {
+	opacity: .9;
+}
+
+.error-block {
+	margin-top: 10px;
+	display: block;
+	background: #DB504A;
+	padding: 10px;
+	color: #fff;
+	border-radius: 4px;
+}
+
+.white-color {
+	color: #fff;
 }
