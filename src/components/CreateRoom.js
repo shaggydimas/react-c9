@@ -1,15 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-// class CreateRoom extends Component {
-// 	render() {
-// 		return(
-// 			<div>
-// 			<input type="text" ref={props.setRef} />
-// 				<button onClick={ () => { props.submit() } }>Create chat</button>
-// 			</div>
-// 			)
-// 	}
-// }
 const CreateRoom = (props) => {
 	const handleSub = (e) => {
 		if(e.keyCode === 13 || e.type === 'click') {

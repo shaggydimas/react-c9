@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CreateRoom from './CreateRoom';
-import base, { firebaseApp } from '../base';
-import firebase from 'firebase';
+import base from '../base';
 
 class Rooms extends Component {
 	
@@ -27,13 +26,13 @@ class Rooms extends Component {
 		this.ref = base.syncState('chat-rooms/', {
 			context: this,
 			state: 'rooms',
-			then: () => {
-				this.setState({
-					loaded: true
-				})
-			}
+			then: () => this.props.loadSuccess
 		});
 	}
+
+	componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
 
 	setRef(ref) {
   	this.inputVal = ref;
@@ -52,7 +51,7 @@ class Rooms extends Component {
 	  		rooms,
 	  		errors: false
 	  	})
-	  	this.props.push('/chat-room/'+val);
+	  	this.props.push(process.env.PUBLIC_URL + '/chat-room/'+val);
   	}
   	this.setState({
   		errors: true
@@ -69,7 +68,7 @@ class Rooms extends Component {
   }
 
   goToChat(chatName) {
-  	this.props.push('/chat-room/'+chatName);
+  	this.props.push(process.env.PUBLIC_URL+'/chat-room/'+chatName);
   }
 
 	render() {
@@ -85,7 +84,7 @@ class Rooms extends Component {
 				<ul className="chat-rooms">
 				{ Object.keys(this.state.rooms).map((key) =>
 					<li key={key}>
-					 <a href="javascript:void(0)" title="Join chat" onClick={() => { this.goToChat(key) }}>{key} | created by: { this.state.rooms[key].user }</a>
+					 <a href="javascript:void(0)" title="Join chat" onClick={() => { this.goToChat(key) }}><b>{key}</b> <span>created by: { this.state.rooms[key].user }</span></a>
 					</li>
 					)
 				}

@@ -11,6 +11,7 @@ class Login extends Component {
 					*/}
 					<button className="fb" onClick={ () => { this.props.auth('Facebook')} }>Login with Facebook</button>
 					<button className="tw" onClick={ () => { this.props.auth('Twitter')} }>Login with Twitter</button>
+					<button onClick={this.props.guest}>Guest User</button>
 				</div>
 			</div>
 		)

@@ -22,6 +22,8 @@ class App extends Component {
     this.authenticate = this.authenticate.bind(this);
     this.authHandler = this.authHandler.bind(this);
     this.checkIfLogged = this.checkIfLogged.bind(this);
+    this.guestUser = this.guestUser.bind(this);
+    this.loadSuccess = this.loadSuccess.bind(this);
   }
 
   componentDidMount() {
@@ -47,6 +49,12 @@ class App extends Component {
     });
   }
 
+  loadSuccess() {
+    this.setState({
+      loaded: true
+    })
+  }
+
   authHandler(user) {
     this.setState({ user: {
       name: user.displayName,
@@ -55,6 +63,15 @@ class App extends Component {
     loaded: true
     })
   }
+
+  guestUser() {
+   this.setState({ user: {
+      name: 'Guest User',
+      uid: Date.now()
+    },
+    loaded: true
+    }) 
+ }
 
   authenticate(provider) {
     const prov = (provider === 'Facebook') ? new firebase.auth.FacebookAuthProvider(): new firebase.auth.TwitterAuthProvider();
@@ -76,12 +93,22 @@ class App extends Component {
           <Landing 
           {...props}
           loaded={this.state.loaded}
+          loadSuccess={this.loadSuccess}
           user={this.state.user}
           authenticate={this.authenticate}
+          guest={this.guestUser}
            /> }>
           }
+          }
         </Route>
-        <Route path={process.env.PUBLIC_URL+'/chat-room/:room'} render={ (props) => <Chat {...props} user={this.state.user} /> }></Route>
+        <Route path={process.env.PUBLIC_URL+'/chat-room/:room'} render={ (props) =>
+          <Chat
+          {...props}
+          loaded={this.state.loaded}
+          loadSuccess={this.loadSuccess}
+          user={this.state.user}
+          guest={this.guestUser}
+          /> }></Route>
       </Switch>
     </BrowserRouter>)
   }

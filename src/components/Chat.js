@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import Messages from './Messages';
 import MessageForm from './MessageForm';
 import ChatHeader from './ChatHeader';
-import base, { firebaseApp } from '../base';
-import firebase from 'firebase';
+import base from '../base';
+import Login from './Login';
 
 class Chat extends Component {
 
 	state = {
 		messages: {},
-		loaded: false
 	}
 
 	constructor() {
@@ -23,9 +22,7 @@ class Chat extends Component {
       context: this,
       state: 'messages',
       then: () => {
-        this.setState({
-          loaded: true
-        })
+        this.props.loadSuccess;
         if(this.messagesContainer !== undefined) {
           this.messagesContainer.scrollTo( 0, 99999 );
         }
@@ -66,13 +63,21 @@ class Chat extends Component {
   }
 
 	render() {
-		return(
-			<React.Fragment>
-				<ChatHeader chatName={this.props.match.params.room} push={this.props.history.push} />
-				<Messages messages={this.state.messages} user={this.props.user} setRef={this.setRef} />
-				<MessageForm handleComment={this.handleComment} />
-			</React.Fragment>
-		)
+		if(!this.props.user.name) {
+			return <Login auth={ this.props.authenticate } guest={this.props.guest} />
+		}
+		else if(!this.props.loaded) {
+			return <div className="loader">Loading...</div>
+		}
+		else {
+			return(
+				<React.Fragment>
+					<ChatHeader chatName={this.props.match.params.room} push={this.props.history.push} />
+					<Messages messages={this.state.messages} user={this.props.user} setRef={this.setRef} />
+					<MessageForm handleComment={this.handleComment} />
+				</React.Fragment>
+			)
+		}
 	}
 }
 

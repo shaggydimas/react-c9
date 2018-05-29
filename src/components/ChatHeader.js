@@ -3,7 +3,7 @@ import React from 'react';
 const ChatHeader = (props) => {
 	const goHome = (e) => {
 		e.preventDefault();
-		props.push('/');
+		props.push(process.env.PUBLIC_URL+'/');
 	}
 	return(
 		<div className="chat-header">

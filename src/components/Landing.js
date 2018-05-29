@@ -4,7 +4,7 @@ import Rooms from './Rooms';
 class Landing extends Component {
 	render() {
 		if(!this.props.user.name) {
-			return <Login auth={ this.props.authenticate } />
+			return <Login auth={ this.props.authenticate } guest={this.props.guest} />
 		}
 		else if(!this.props.loaded) {
 			return <div className="loader">Loading...</div>

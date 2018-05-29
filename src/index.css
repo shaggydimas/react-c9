@@ -168,6 +168,23 @@ main .loader, .login-wrap {
 	background: silver;
 }
 
+.chat-rooms li a:after {
+	clear: both;
+	display: table;
+	content: '';
+}
+
+.chat-rooms li a b {
+	float: left;
+	font-weight: normal;
+}
+
+.chat-rooms li a span {
+	float: right;
+	color: #999;
+	font-size: 12px;
+}
+
 .chat-header {
 	position: absolute;
 	top: 0;
